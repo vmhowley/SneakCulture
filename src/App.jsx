@@ -1,8 +1,5 @@
-import { useState } from 'react'
-
 import './App.css'
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'
-import Navbar from  './components/NavBar'
+import { BrowserRouter as Router, Route, Routes,  } from 'react-router-dom'
 import Home from './Routes/Home'
 import Products from './routes/Product'
 import Category from './routes/Category'
@@ -13,7 +10,7 @@ function App() {
   return (
     <>
       <Router >
-        <Routes location={location}>
+        <Routes >
           <Route path="/" element={<Home/>}/>
           <Route path="/products" element={<Products/>}/>
           <Route path="/category" element={<Category/>}/>
