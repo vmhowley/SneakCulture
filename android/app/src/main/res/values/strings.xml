@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">sneakculture</string>
+    <string name="title_activity_main">sneakculture</string>
+    <string name="package_name">com.sneakculture</string>
+    <string name="custom_url_scheme">com.sneakculture</string>
+</resources>
