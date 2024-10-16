@@ -16,7 +16,7 @@ function ProductContainer() {
     // Función para obtener los productos
     const obtenerProductos = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/productos');
+        const response = await axios.get('https://warm-lokum-f5b661.netlify.app/.netlify/functions/app/productos');
         setProducts(response.data); // Guardar productos en el estado
         setLoading(false); // Cambiar el estado de cargando
       } catch (err) {
