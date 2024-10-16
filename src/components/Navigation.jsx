@@ -3,7 +3,7 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import HomeIcon from '../assets/icons/Home.svg'
 import Category from '../assets/icons/category.svg'
 import Profile from '../assets/icons/Profile.svg'
-import WishList from '../assets/icons/WishList.svg'
+import WishList from '../assets/icons/wishList.svg'
 import { Link } from 'react-router-dom';
 
 function Navigation() {
