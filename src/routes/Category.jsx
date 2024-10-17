@@ -5,25 +5,31 @@ import Img3 from '../assets/products/img3.svg'
 import Img4 from '../assets/products/img4.svg'
 import TopBar from '../components/TopBar'
 import Navigation from '../components/Navigation'
+import { motion } from 'framer-motion'
 function Category() {
   const categories = [
     {
-      name: 'Air Jordan',
+      name: 'Cloth',
       image: Img1,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in orci eget velit elementum sagittis. Aliquam erat volutpat. Sed vel nunc sed lectus placerat pulvinar.'
     },
     {
-      name: 'Basketball Shoes',
+      name: 'Running Shoes',
       image: Img2,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in orci eget velit elementum sagittis. Aliquam erat volutpat. Sed vel nunc sed lectus placerat pulvinar.'
     },
     {
-      name: 'Running Shoes',
+      name: 'Casual Shoes',
       image: Img3,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in orci eget velit elementum sagittis. Aliquam erat volutpat. Sed vel nunc sed lectus placerat pulvinar.'
     },
     {
-      name: 'Casual Shoes',
+      name: 'Bags',
+      image: Img4,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in orci eget velit elementum sagittis. Aliquam erat volutpat. Sed vel nunc sed lectus placerat pulvinar.'
+    },
+    {
+      name: 'Hats',
       image: Img4,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in orci eget velit elementum sagittis. Aliquam erat volutpat. Sed vel nunc sed lectus placerat pulvinar.'
     },
@@ -31,7 +37,11 @@ function Category() {
   ] 
   return (
     <>
-    <div className='grid gap-6 pb-32 overflow-auto  px-8 fixed inset-x-0 h-full  '>
+    <motion.div className='grid gap-6 pb-32 overflow-auto  px-8 fixed inset-x-0 h-full  '
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+    exit={{ opacity: 0 }}>
       <TopBar name={'CATEGORY'} />
       {categories.map((category) => {
         return(
@@ -40,7 +50,7 @@ function Category() {
         <img className='w-52 relative -right-10 -rotate-12' src={category.image} alt={category.name} />
       </div>
     )})}
-    </div>
+    </motion.div>
     <Navigation/>
     </>
   )

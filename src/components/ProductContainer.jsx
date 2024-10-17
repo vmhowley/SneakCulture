@@ -1,10 +1,7 @@
 import axios from "axios";
 import {useState, useEffect} from 'react'
 import Img1 from '../assets/products/img1.svg'
-import Img3 from '../assets/products/img3.svg'
-import AdidasSamba from '../assets/products/Adidas-Samba.jpg'
-import Img4 from '../assets/products/img2.svg'
-import NewBalance from '../assets/products/New-Balance-9060-Black-Castlerock-Grey-Product.avif'
+
 import { Link } from 'react-router-dom'
 import Loader from "./Loader";
 function ProductContainer() {
@@ -31,29 +28,30 @@ function ProductContainer() {
 
   // Mostrar un mensaje de carga o error si corresponde
   if (loading) return <div className=" inset-x-0 fixed items-center content-center justify-center w-screen flex my-56">
-    <Loader/>;
+    <Loader/>
     </div>
   if (error) return <p>{error}</p>;
+  if (products.length <= 0) return <p>{"No hay productos Existentes"}</p>;
 
 
 
   return (
-    <Link to={'/products'} className='grid grid-cols-2 sm:flex sm:flex-col  gap-6 justify-center content-center items-center '>
+    <div className='grid grid-cols-2 sm:flex sm:flex-col  gap-6 justify-center content-center items-center '>
         {products.map(product => 
-      <div className='' key={product._id}>
-        <div className='w-36 h-36 items-center content-center bg-white shadow rounded-2xl mb-2'>
-        <img className='object-contain w-36 h-36' src={Img1} alt="" />
+      <Link to={`/products/${product._id}`} className='' key={product._id}>
+        <div className='w-36 h-36 items-center content-center  mb-2  '>
+        <img className='object-center w-36 h-36 rounded-2xl' src={product.image} alt={product.image} />
         </div>
         <div className='text-left'>
-        <h1 className='neue  uppercase text-xs'>{product.nombre}</h1>
+        <h1 className='neue  uppercase text-xs'>{product.name}</h1>
         <div className='flex gap-2 neue' >
-        <h1 className='font-bold'>${product.precio}</h1>
-        <h1 className='line-through text-gray-400 '>${product.precio+20}</h1>
+        <h1 className='font-bold'>${product.price}</h1>
+        <h1 className='line-through text-gray-400 '>${product.price}</h1>
         </div>
         </div>
-        </div>
-        )}
         </Link>
+        )}
+        </div>
   )
 }
 

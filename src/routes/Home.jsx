@@ -3,10 +3,14 @@ import NavBar from '../components/NavBar'
 import BrandsCarousel from '../components/BrandsCarousel'
 import ProductContainer from '../components/ProductContainer'
 import Navigation from  '../components/Navigation'
-
+import { motion } from 'framer-motion'
 function Home() {
   return (
-    <div className='grid pb-24 sm:justify-center'>
+    <motion.div className='grid pb-24 sm:justify-center'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0 }}>
       <div className='pb-10'>
         <NavBar />
       </div>
@@ -21,7 +25,7 @@ function Home() {
       </div>
       <Navigation/>
 
-    </div>
+    </motion.div>
   )
 }
 
