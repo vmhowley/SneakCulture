@@ -4,6 +4,7 @@ import Home from './routes/Home'
 import Products from './routes/Product'
 import Category from './routes/Category'
 import Cart from './routes/Cart'
+import NewProduct from './routes/NewProduct'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/products" element={<Products/>}/>
           <Route path="/category" element={<Category/>}/>
           <Route path="/cart" element={<Cart/>}/>
+          <Route path="/newprod" element={<NewProduct/>}/>
         </Routes>
       </Router>
     </>

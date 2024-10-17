@@ -6,6 +6,7 @@ import AdidasSamba from '../assets/products/Adidas-Samba.jpg'
 import Img4 from '../assets/products/img2.svg'
 import NewBalance from '../assets/products/New-Balance-9060-Black-Castlerock-Grey-Product.avif'
 import { Link } from 'react-router-dom'
+import Loader from "./Loader";
 function ProductContainer() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +30,9 @@ function ProductContainer() {
   }, []); // [] hace que la función se ejecute una sola vez al montar el componente
 
   // Mostrar un mensaje de carga o error si corresponde
-  if (loading) return <p>Cargando productos...</p>;
+  if (loading) return <div className=" inset-x-0 fixed items-center content-center justify-center w-screen flex my-56">
+    <Loader/>;
+    </div>
   if (error) return <p>{error}</p>;
 
 
