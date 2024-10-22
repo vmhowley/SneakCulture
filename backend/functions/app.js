@@ -1,4 +1,3 @@
-require('dotenv').config()
 const serverless = require("serverless-http");
 const express = require('express');
 const puppeteer = require('puppeteer-extra');
@@ -75,6 +74,10 @@ async function sendNotificationEmail() {
           process.env.REFRESH_TOKEN,
       });
       
+      const CLIENT_ID = "9153435564-f3o0juoplad0qj0mm51ji6hect63bt82.apps.googleusercontent.com"
+      const CLIENT_SECRET = "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"
+      const REFRESH_TOKEN = "1//04i-f086Dn2I0CgYIARAAGAQSNwF-L9IrkTElbY1DXzMmsM1RgfBGRWiDd7Bfxjf_zaFqhRYDziNtyA_Q9z_pETgzAL--HzPQ5Hg"
+      const USER_EMAIL_SENDER = "hackme0880@gmail.com"
       const accessToken = oauth2Client.getAccessToken();
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -82,10 +85,10 @@ async function sendNotificationEmail() {
         secure: true,
         auth: {
             type: "OAuth2",
-            user: process.env.USER_EMAIL_SENDER,
-            clientId: process.env.CLIENT_ID,
-            clientSecret: process.env.CLIENT_SECRET,
-            refreshToken: process.env.REFRESH_TOKEN,
+            user: USER_EMAIL_SENDER,
+            clientId: CLIENT_ID,
+            clientSecret: CLIENT_SECRET,
+            refreshToken: REFRESH_TOKEN,
             accessToken
             
 
