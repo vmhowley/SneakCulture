@@ -1,5 +1,7 @@
 require('dotenv').config()
+const serverless = require("serverless-http");
 const express = require('express');
+const router = express.Router();
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const nodemailer = require('nodemailer');
@@ -110,3 +112,5 @@ async function sendNotificationEmail() {
 app.listen(4000, () => {
     console.log('Backend corriendo en el puerto 4000');
 });
+app.use("/.netlify/functions/app", router);
+module.exports.handler = serverless(app);
