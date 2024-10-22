@@ -33,7 +33,7 @@ function Scrapper() {
   }, []);
 
   return (
-    <div className="grid  gap-3 justify-center">
+    <div className="grid  gap-3 justify-center text-center">
       <h1 className='text-2xl font-bold'>Scrapper de Producto</h1>
       <input
       className='border ring-2 ring-black  relative '
