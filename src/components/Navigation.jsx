@@ -22,8 +22,8 @@ function Navigation() {
             icon: <img src={Category} className='' alt="" />
         },
         {
-            title: 'favorites',
-            url: '/favorites',
+            title: 'wishlist',
+            url: '/wishlist',
             icon: <img src={WishList} className='' alt="" />
         },
         {
@@ -39,11 +39,10 @@ function Navigation() {
 
 
   return (
-    <nav className={`fixed left-0 bottom-2 w-screen px-8 p-2 z-50 `}>
-        <ul className='flex justify-between bg-[#262626]  text-white border-t  rounded-full shadow-2xl p-4 px-8 '>
+    <nav className={`fixed left-0 bottom-0 w-screen px-8 p-2 z-50 `}>
+        <ul className='flex justify-between bg-[#262626]  text-white border-t  rounded-full shadow-2xl p-4 '>
             {nav.map((item) => {
                 return (
-
                     <Link to={item.url} onClick={handleNavigation} className={`${path === item.title ? 'bg-white  rounded-full px-3 py-1 transition-all ease-in-out duration-500 delay-75' : 'flex'}`} id={item.title} key={item.title}>
                         <div className={`flex items-center ${path === item.title ? 'invert':''}`} href={item.url}>{item.icon}
                             <p className={`${path != item.title ? 'hidden' : 'flex'} font-sans text-white `}>{item.title}</p>

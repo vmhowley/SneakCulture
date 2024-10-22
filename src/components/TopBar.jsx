@@ -10,11 +10,12 @@ function TopBar({name, buttons}) {
     navigate('/') // go back one page in the history stack
   }
     return (
-    <div className='fixed flex  top-0 left-0 items-center z-50 p-4 w-screen justify-between'>
-      <Link to={-1} className=' w-10 h-10'><img src={BackIcon} alt="" /></Link>
-    <h1 className='condensed font-bold text-3xl '>{name}</h1>
-    <h1 className='condensed font-bold text-3xl '>{buttons === 'cart' ? <Basket/> :''}</h1>
-        
+    <div className='fixed top-0 left-0 w-full  flex items-center content-center z-50  p-3 bg-white  '>
+      <Link to={-1}>
+      <img src={BackIcon} alt="" />
+      </Link>
+    <h1 className='condensed font-bold text-4xl justify-center flex w-full'>{name}</h1>
+    <button className=''>{buttons === 'cart' ? <Basket/> :''}</button>
         </div>
   )
 }

@@ -10,10 +10,12 @@ function Basket() {
         setCart([...cart, product]);
     }
   return (
-    <button className='w-14 border  content-center rounded-xl'>
-            <div className='bg-red-600 w-4 fixed text-xs font-sans  rounded-full right-4 top-5 scale-90 text-white '>{count}</div>
-            <img className='fixed top-7 right-6' src={BasketIcon} alt="" />
-            </button>
+    <>
+    <div className='relative right-2'>
+            <div className='bg-red-600 w-4 absolute text-xs font-sans  rounded-full -right-2 -top-2 text-white '>{count}</div>
+            <img  src={BasketIcon} alt="" />
+            </div>
+    </>
   )
 }
 

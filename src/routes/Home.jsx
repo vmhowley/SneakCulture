@@ -1,12 +1,12 @@
 import React from 'react'
-import NavBar from '../components/NavBar'
-import BrandsCarousel from '../components/BrandsCarousel'
-import ProductContainer from '../components/ProductContainer'
-import Navigation from  '../components/Navigation'
+import NavBar from '@/components/NavBar'
+import BrandsCarousel from '@/components/BrandsCarousel'
+import ProductContainer from '@/components/ProductContainer'
+import Navigation from  '@/components/Navigation'
 import { motion } from 'framer-motion'
 function Home() {
   return (
-    <motion.div className='grid pb-24 sm:justify-center'
+    <motion.div className='grid pb-24 sm:justify-center overflow-scroll '
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}

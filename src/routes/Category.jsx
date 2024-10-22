@@ -37,7 +37,7 @@ function Category() {
   ] 
   return (
     <>
-    <motion.div className='grid gap-6 pb-32 overflow-auto  px-8 fixed inset-x-0 h-full  '
+    <motion.div className='grid gap-6 pb-56 overflow-auto  px-8 fixed inset-x-0 h-screen  '
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
