@@ -14,7 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 let scrappingStatus = 'idle';  // Estado para la UI
-console.log(process.env.CLIENT_ID, process.env.CLIENT_SECRET)
+
+
 // Ruta para iniciar el scrapping
 app.post('/start-scrapper', async (req, res) => {
     const { url } = req.body;
@@ -61,17 +62,29 @@ app.get('/status', (req, res) => {
 
 // Enviar correo de notificación
 async function sendNotificationEmail() {
+    const oauth2Client = new OAuth2(
+        process.env.CLIENT_ID,
+        process.env.CLIENT_SECRET,
+        "https://developers.google.com/oauthplayground"
+      );
+      
+      oauth2Client.setCredentials({
+        refresh_token:
+          process.env.REFRESH_TOKEN,
+      });
+      
+      const accessToken = oauth2Client.getAccessToken();
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
         secure: true,
         auth: {
             type: "OAuth2",
-            user: "hackme0880@example.com",
+            user: process.env.USER_EMAIL_SENDER,
             clientId: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
             refreshToken: process.env.REFRESH_TOKEN,
-            accessToken: process.env.ACCESS_TOKEN,
+            accessToken
             
 
         },
@@ -79,7 +92,7 @@ async function sendNotificationEmail() {
 
     const mailOptions = {
         from: 'hackme0880@gmail.com',
-        to: 'vmhowley@gmail.com',
+        to: 'vmhowleyh@gmail.com',
         subject: 'Producto disponible',
         text: 'El producto que estabas esperando ya está disponible!',
     };
