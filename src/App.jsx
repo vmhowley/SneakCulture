@@ -8,6 +8,7 @@ import NewProduct from './routes/NewProduct'
 import WishList from './routes/WishList'
 import { motion, AnimatePresence } from 'framer-motion' 
 import Basket from './routes/Basket'
+import Scrapper from './routes/Scrapper'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/products" element={<Products/>}/>
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/basket" element={<Basket/>}/>
+          <Route path="/scrapping" element={<Scrapper />}/>
         </Routes>
         </div>
       </Router>
