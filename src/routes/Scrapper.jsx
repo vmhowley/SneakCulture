@@ -10,7 +10,7 @@ function Scrapper() {
       return;
     }
 
-    const response = await fetch('http://localhost:4000/start-scrapper', {
+    const response = await fetch('https://keen-syrniki-03a9ab.netlify.app/.netlify/functions/app/start-scrapper', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ function Scrapper() {
   };
 
   const checkStatus = async () => {
-    const response = await fetch('http://localhost:4000/status');
+    const response = await fetch('https://keen-syrniki-03a9ab.netlify.app/.netlify/functions/app/status');
     const data = await response.json();
     setStatus(data.status);
   };
