@@ -1,9 +1,11 @@
+require('dotenv').config()
 const express = require('express');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
-
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 // Inicializar Puppeteer con Stealth Plugin
 puppeteer.use(StealthPlugin());
 
@@ -12,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 let scrappingStatus = 'idle';  // Estado para la UI
-
+console.log(process.env.CLIENT_ID, process.env.CLIENT_SECRET)
 // Ruta para iniciar el scrapping
 app.post('/start-scrapper', async (req, res) => {
     const { url } = req.body;
@@ -60,22 +62,35 @@ app.get('/status', (req, res) => {
 // Enviar correo de notificación
 async function sendNotificationEmail() {
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
         auth: {
-            user: 'TU_EMAIL@gmail.com',
-            pass: 'TU_CONTRASEÑA',
+            type: "OAuth2",
+            user: "hackme0880@example.com",
+            clientId: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET,
+            refreshToken: process.env.REFRESH_TOKEN,
+            accessToken: process.env.ACCESS_TOKEN,
+            
+
         },
-    });
+      });
 
     const mailOptions = {
-        from: 'TU_EMAIL@gmail.com',
-        to: 'DESTINATARIO_EMAIL@gmail.com',
+        from: 'hackme0880@gmail.com',
+        to: 'vmhowley@gmail.com',
         subject: 'Producto disponible',
         text: 'El producto que estabas esperando ya está disponible!',
     };
 
-    await transporter.sendMail(mailOptions);
-    console.log('Correo enviado.');
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+        console.error('Error occurred:', error);
+        } else {
+        console.log('Email sent successfully:', info.response);
+        }
+     });
 }
 
 // Iniciar el servidor
