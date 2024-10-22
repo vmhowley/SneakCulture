@@ -15,7 +15,6 @@ function App() {
     <>
     <AnimatePresence>
       <Router>
-        <div className=''>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/category" element={<Category/>}/>
@@ -26,7 +25,6 @@ function App() {
           <Route path="/basket" element={<Basket/>}/>
           <Route path="/scrapping" element={<Scrapper />}/>
         </Routes>
-        </div>
       </Router>
     </AnimatePresence>
     </>
