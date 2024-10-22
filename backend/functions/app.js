@@ -1,7 +1,6 @@
 require('dotenv').config()
 const serverless = require("serverless-http");
 const express = require('express');
-const router = express.Router();
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const nodemailer = require('nodemailer');
@@ -12,14 +11,15 @@ const OAuth2 = google.auth.OAuth2;
 puppeteer.use(StealthPlugin());
 
 const app = express();
+const router = express.Router();
 app.use(cors());
-app.use(express.json());
+router.use(express.json());
 
 let scrappingStatus = 'idle';  // Estado para la UI
 
 
 // Ruta para iniciar el scrapping
-app.post('/start-scrapper', async (req, res) => {
+router.post('/start-scrapper', async (req, res) => {
     const { url } = req.body;
     
     if (!url) {
@@ -58,7 +58,7 @@ app.post('/start-scrapper', async (req, res) => {
 });
 
 // Ruta para obtener el estado del scrapper
-app.get('/status', (req, res) => {
+router.get('/status', (req, res) => {
     return res.json({ status: scrappingStatus });
 });
 
@@ -108,9 +108,6 @@ async function sendNotificationEmail() {
      });
 }
 
-// Iniciar el servidor
-app.listen(4000, () => {
-    console.log('Backend corriendo en el puerto 4000');
-});
+
 app.use("/.netlify/functions/app", router);
 module.exports.handler = serverless(app);
