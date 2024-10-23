@@ -1,40 +1,22 @@
 import React, { useState, useEffect } from 'react';
-
+import axios from 'axios';
 function Scrapper() {
   const [url, setUrl] = useState('');
   const [status, setStatus] = useState('idle');
-  const [products, setProducts] = useState([
-    {
-    id: 1,
-    tittle: 'Nike Air Zoom Pegasus 37',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    price: 150.0,
-    image: 'https://example.com/image1.jpg',
-  },
-  {
-    id: 2,
-    tittle: 'Adidas Ultraboost 17',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    price: 180.0,
-    image: 'https://example.com/image2.jpg',
-  },
-  {
-    id: 3,
-    tittle: 'Reebok Classic 12',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    price: 120.0,
-    image: 'https://example.com/image3.jpg',
-  }
-])
+  const [products, setProducts] = useState([])
   useEffect(()=> {
-    async function getNews ()  {
-      const response = await fetch('http://localhost:4000/products/nike');
-      const data = await response.json();
-      setProducts(data);
-      console.log(data)
-    }
-    
-    getNews()
+    const obtenerProductos = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:4000/products/nike'
+        );
+        console.log(response.data)
+        setProducts(response.data.products); // Guardar productos en el estado
+      } catch (err) {
+        console.error(err)
+      }
+    };
+    obtenerProductos();
   },[])
   const startScrapper = async () => {
     if (!url) {
@@ -77,16 +59,21 @@ function Scrapper() {
       <h2>Estado: {status}</h2>
       {status === 'available' && <p>¡Producto disponible!</p>}
       </div>
-      {products.length > 0 && (
-        <div>
-          <h2>Productos Encontrados:</h2>
-          <ul>
-            {products.map((product) => (
-              <li key={product.tittle || ''}>{product.tittle || ''}</li>
-            ))}
-          </ul>
-        </div>
-      )}
+        {products.length > 0 && (
+        <div className='grid grid-cols-2 gap-y-6 justify-center items-center content-center'>
+          <h2 className='col-span-2'>Productos Encontrados:</h2>
+            {products.map((item, index) => (
+              <>
+             {item != null ?
+             <div className='grid justify-center text-left gap-2' key={index}>
+             <img src={item.image} alt="as" className='border rounded-xl w-32' />
+             <h1>{item.tittle}</h1>   
+             </div>
+             : ''}
+             </>
+          ))}
+ </div>
+        )}
     </div>
   );
 }

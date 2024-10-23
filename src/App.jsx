@@ -13,7 +13,6 @@ import Scrapper from './routes/Scrapper'
 function App() {
   return (
     <>
-    <AnimatePresence>
       <Router>
         <Routes>
           <Route path="/" element={<Home/>}/>
@@ -26,7 +25,6 @@ function App() {
           <Route path="/scrapping" element={<Scrapper />}/>
         </Routes>
       </Router>
-    </AnimatePresence>
     </>
   )
 }
